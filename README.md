@@ -9,10 +9,16 @@ Create empty Mysql database. Set connection to this database in  .env file
 - **DB_PASSWORD** - database access password
 - **DB_CONNECTION** - set 'mysql' or empty
 
-Install dependents
+Install dependents:
 ``
 composer install
 ``
 
+I'm using test content/images from DodoPizza UK. Hi, Fedor Ovchinnikov! :)
+To crate DB structure & fill this DB with test data use migrations:
+``
+php artisan migrate
+php artisan db:seed
+``
 
 
