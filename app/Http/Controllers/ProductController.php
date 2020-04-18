@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Product;
-use Illuminate\Http\Request;
 use App\Http\Resources\ProductsCollection;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cache;
 
 class ProductController extends Controller
 {
@@ -16,9 +16,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return new ProductsCollection(
-            Product::all(Product::PRODUCT_FIELDS)->sortBy('sort')->values()
-        );
+        $dataCacheKey = env('PRODCUTS_CACHE_KEY', 'products_cache_key') . '_data';
+        return Cache::remember($dataCacheKey, 24*60*60, function () {
+            return new ProductsCollection(
+                Product::all(Product::PRODUCT_FIELDS)->sortBy('sort')->values()
+            );
+        });
     }
 
     /**

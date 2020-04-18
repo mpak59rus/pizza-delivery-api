@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use Illuminate\Http\Request;
 use App\Http\Resources\CategoriesCollection;
+use Illuminate\Support\Facades\Cache;
 
 class CategoryController extends Controller
 {
@@ -15,8 +15,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return new CategoriesCollection(
-            Category::all(Category::CATEGORY_FIELDS)->sortBy('sort')->values()
-        );
+        $dataCacheKey = env('CATEGORIES_CACHE_KEY', 'categories_cache_key') . '_data';
+        return Cache::remember($dataCacheKey, 24*60*60, function () {
+            return new CategoriesCollection(
+                Category::all(Category::CATEGORY_FIELDS)->sortBy('sort')->values()
+            );
+        });
     }
 }

@@ -14,15 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
 Route::resource('/categories', 'CategoryController')->only([
+    'index'
+]);
+Route::resource('/params', 'ParamController')->only([
     'index'
 ]);
 Route::resource('/products', 'ProductController')->only([
     'index', 'show'
 ]);
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
 Route::post('login', 'AuthController@login');
 Route::post('register', 'AuthController@register');
 Route::middleware('auth:api')->group(function () {
