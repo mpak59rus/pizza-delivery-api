@@ -18,7 +18,9 @@ class CategoryController extends Controller
         $dataCacheKey = env('CATEGORIES_CACHE_KEY', 'categories_cache_key') . '_data';
         return Cache::remember($dataCacheKey, 24*60*60, function () {
             return new CategoriesCollection(
-                Category::all(Category::CATEGORY_FIELDS)->sortBy('sort')->values()
+                Category::all(Category::CATEGORY_FIELDS)->filter(function (Category $category) {
+                    return $category->products()->count() > 0 ? true : false;
+                })->sortBy('sort')->values()
             );
         });
     }
