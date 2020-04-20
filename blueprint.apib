@@ -1,0 +1,154 @@
+FORMAT: 1A
+HOST: http://api.pizza.local
+
+# Pizza Task API
+
+*Overview of methods in Pizza Task API*
+
+# Group User
+
+## Authentication [/api/login]
+
+### Login [POST]
+
+Allows to retrieve a valid JSON Web Token for email and password.
+Access tokens are required to access order history endpoint of this API.
+
+**Endpoint information**
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | No  |
+
+**Error codes**
+
+|       |                             |
+|-------| --------------------------- |
+| `422` | Wrong password              |
+| `422` | User does not exist         |
+
++ Request (application/json)
+    + Attributes
+        + email: `john.doe@mail.com` (string, required) - User email address
+        + password: `QXR0mi38a2` (string, required) - User password
+
++ Response 200 (application/json)
+    + Attributes
+        + token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9....` (string) - JSON Web Token.
++ Response 422 (plainntext)
+    + Attributes
+        + errors: `Wrong password` (string) - Error text
+
+## Registration [/api/register]
+
+### Register a new user [POST]
+
+Creates a new user account.
+
+**Endpoint information**
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | No  |
+
+**Error codes**
+
+|       |                                            |
+|-------| ------------------------------------------ |
+| `422` | The email has already been taken.          |
+
++ Request (application/json)
+    + Attributes
+        + email: `john.doe@mail.com` (string, required) - E-mail address.
+        + password: `QXR0mi38a2` (string, required) - User password.
+
++ Response 200 (application/json)
+    + Attributes
+        + token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9....` (string) - JSON Web Token.
+
++ Response 422 (application/json)
+    + Attributes
+        + errors: `The email has already been taken.` (string) - Error text.
+
+## Logout [/api/logout]
+
+### User logout [GET]
+
+Logout current user
+
+**Endpoint information**
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+
+**Error codes**
+
+|       |                          |
+|-------| ------------------------ |
+| `401` | Unauthenticated          |
+
++ Request (application/json)
+
++ Response 200 (application/json)
+    + Attributes
+        + message: `You have been succesfully logged out!` (string) - Success text.
+
++ Response 401 (application/json)
+    + Attributes
+        + errors: `Unauthenticated` (string) - Error text.
+
+# Group Menu
+
+## Categories [/categories]
+
+### Get all categories [GET]
+
+Return a array with all Categories in menu.
+
+**Endpoint information**
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | No  |
+
++ Request (application/json)
+
++ Response 200 (application/json)
+    + Attributes (array[Category])
+
+
+## Products [/products]
+
+### Get all products [GET]
+
+Return a array with all Products in menu.
+
+**Endpoint information**
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | No  |
+
++ Request (application/json)
+
++ Response 200 (application/json)
+    + Attributes (array[Product])
+
+# Data Structures
+
+## Product (object)
++ id: 2  (number) - Product Id
++ category_id: 1  (number) - Category Id
++ title: `Mushrooms`  (string) - Title of Product
++ slug: `mushrooms-pizza`  (string) - Produt alias/slug for SEO
++ description: `Mushrooms, hard cheese ...`  (string) - Product Description
++ price_eur: `12.90`  (number) - Price in Euro
++ price_usd: `11.90`  (number) - Price in US Dollar
++ image_url: `https://zzz.net/3a7e5.jpg`  (string) - Product image url
+
+## Category (object)
++ id: 2  (number) - Category Id
++ title: `Mushrooms`  (string) - Title of Category
++ slug: `mushrooms-pizza`  (string) - Category alias/slug for SEO
++ description: `Mushrooms, hard cheese ...`  (string) - Category Description

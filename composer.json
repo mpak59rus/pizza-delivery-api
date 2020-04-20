@@ -9,14 +9,16 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
+        "ext-json": "*",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
+        "hmaus/drafter-installer": "^1.0",
         "iatstuti/laravel-cascade-soft-deletes": "^3.0",
         "laravel/framework": "^7.0",
         "laravel/passport": "^8.4",
         "laravel/tinker": "^2.0",
-        "ext-json": "*"
+        "m165437/laravel-blueprint-docs": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
@@ -33,7 +35,8 @@
     "extra": {
         "laravel": {
             "dont-discover": []
-        }
+        },
+        "drafter-installer-tag": "v3.2.7"
     },
     "autoload": {
         "psr-4": {

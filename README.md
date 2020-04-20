@@ -20,5 +20,11 @@ To crate DB structure & fill this DB with test data use migrations:
 php artisan migrate
 php artisan db:seed
 ``
+I add Vagrant in project 4 Drafter & BluePrintAPI. I'm using Windows Home on personal PC and Docker isn't work on it.
+
+Documentation create by BluePrintAPI - https://github.com/M165437/laravel-blueprint-docs
+Documentation URL - /api-documentation
+
+
 
 

@@ -32,3 +32,6 @@ Thumbs.db
 
 # Mac DS_Store Files
 .DS_Store
+
+# vagrant runtime
+/.vagrant

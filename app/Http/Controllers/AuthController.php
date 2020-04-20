@@ -43,24 +43,25 @@ class AuthController extends Controller
                 $response = ['token' => $token];
                 return response($response, 200);
             } else {
-                $response = "Password missmatch";
-                return response($response, 422);
+                return response(['errors'=> 'Wrong password'], 422);
             }
 
         } else {
-            $response = 'User does not exist';
-            return response($response, 422);
+            return response(['errors'=> 'User does not exist'], 422);
         }
 
     }
 
     public function logout (Request $request) {
 
+        if (!$request->user()) {
+            return response(['errors'=> 'Unauthenticated'], 401);
+        }
+
         $token = $request->user()->token();
         $token->revoke();
 
-        $response = 'You have been succesfully logged out!';
-        return response($response, 200);
+        return response(['message'=> 'You have been succesfully logged out!'], 200);
 
     }
 }
