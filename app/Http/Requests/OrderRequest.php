@@ -30,6 +30,7 @@ class OrderRequest extends FormRequest
             'comment' => 'string',
             'currency' => 'required|string',
             'paid_delivery' => 'required|boolean',
+            'items' => 'required|array|min:1',
         ];
     }
 }

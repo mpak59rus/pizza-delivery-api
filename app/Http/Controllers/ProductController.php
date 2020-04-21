@@ -16,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $dataCacheKey = env('PRODCUTS_CACHE_KEY', 'products_cache_key') . '_data';
+        $dataCacheKey = env('PRODUCTS_CACHE_KEY', 'products_cache_key') . '_data';
         return Cache::remember($dataCacheKey, 24*60*60, function () {
             return new ProductsCollection(
                 Product::all(Product::PRODUCT_FIELDS)->sortBy('sort')->values()

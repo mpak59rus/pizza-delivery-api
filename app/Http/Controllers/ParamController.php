@@ -15,7 +15,7 @@ class ParamController extends Controller
      */
     public function index() {
         $categoriesCacheKey = env('CATEGORIES_CACHE_KEY', 'categories_cache_key');
-        $productsCacheKey = env('PRODCUTS_CACHE_KEY', 'products_cache_key');
+        $productsCacheKey = env('PRODUCTS_CACHE_KEY', 'products_cache_key');
         if (!Cache::has($categoriesCacheKey)) {
             Category::updateCache();
         }

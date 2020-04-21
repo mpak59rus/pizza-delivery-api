@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\User;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
@@ -16,39 +17,36 @@ class AuthController extends Controller
             return response(['errors' => $userRequest->errors()->all()], 422);
         }
 
-        $request['password'] = Hash::make($userRequest['password']);
         $user = User::create($userRequest->toArray());
+        $token = $user->createToken('Pizza test token')->accessToken;
 
-        $token = $user->createToken('Laravel Password Grant Client')->accessToken;
-        $response = ['token' => $token];
-
-        return response($response, 200);
+        return response(['token' => $token], 200);
     }
 
-    public function login (Request $request)
+    public function login (UserRequest $request)
     {
-        $user = User::where('email', $request->email)->first();
-
-        if ($user) {
-
+        if ($user = User::where('email', $request->email)->first()) {
             if (Hash::check($request->password, $user->password)) {
                 $token = $user->createToken('Pizza test token')->accessToken;
-                $response = ['token' => $token];
-                return response($response, 200);
+
+                return response(['token' => $token], 200);
             } else {
                 return response(['errors' => 'Wrong password'], 422);
             }
-
         } else {
-            return response(['errors' => 'User does not exist'], 422);
+            return response(['errors' => 'User does not exist'], 404);
         }
-
     }
 
-    public function logout (Request $request)
+    /**
+     * @param \App\Http\Requests\UserRequest $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws \Illuminate\Auth\AuthenticationException
+     */
+    public function logout (UserRequest $request)
     {
         if (!$request->user()) {
-            return response(['errors' => 'Unauthenticated'], 401);
+            throw new AuthenticationException();
         }
 
         $token = $request->user()->token();

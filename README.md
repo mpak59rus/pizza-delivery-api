@@ -3,7 +3,7 @@
 Application - 
 API - http://api.pizza.local/
 All documentation on API methods - http://api.pizza.local/api-documentation
-Fronted (ReactJS) repository - 
+Frontend (ReactJS) repository - 
 
 
 ##Install
@@ -23,7 +23,7 @@ composer install
 ``
 
 I'm using test content/images from DodoPizza UK. Hi, Fedor Ovchinnikov! :)
-To crate DB structure & fill this DB with test data use migrations:
+To create DB structure & fill that DB with test data use migrations and seed:
 ``
 php artisan migrate
 php artisan db:seed

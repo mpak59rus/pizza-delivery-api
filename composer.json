@@ -1,7 +1,7 @@
 {
     "name": "laravel/laravel",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Laravel REST api 4 pizza delivery",
     "keywords": [
         "framework",
         "laravel"

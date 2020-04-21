@@ -2,12 +2,24 @@
 
 namespace App;
 
+use App\Http\Repositories\CacheRepository;
 use Iatstuti\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Facades\Cache;
 
+/**
+ * Class Category
+ *
+ * @property int $id
+ * @property string $title
+ * @property string $slug
+ * @property string $description
+ * @property int $sort
+ * @property int $created_at
+ * @property int $updated_at
+ * @property int $deleted_at
+ */
 class Category extends Model
 {
     use SoftDeletes, CascadeSoftDeletes;
@@ -50,23 +62,16 @@ class Category extends Model
     protected static function booted()
     {
         static::created(function () {
-            Category::updateCache();
+            CacheRepository::updateCategoriesCache();
         });
         static::updated(function () {
-            Category::updateCache();
+            CacheRepository::updateCategoriesCache();
         });
         static::deleted(function () {
-            Category::updateCache();
+            CacheRepository::updateCategoriesCache();
         });
         static::saved(function () {
-            Category::updateCache();
+            CacheRepository::updateCategoriesCache();
         });
-    }
-
-    public static function updateCache() {
-        $key = env('CATEGORIES_CACHE_KEY', 'categories_cache_key');
-        Cache::forget($key);
-        Cache::forget($key . '_data');
-        Cache::add($key, md5($key . time()));
     }
 }

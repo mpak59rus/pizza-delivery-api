@@ -2,11 +2,26 @@
 
 namespace App;
 
+use App\Http\Repositories\CacheRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Cache;
 
+/**
+ * Class Product
+ *
+ * @property int $id
+ * @property int $category_id
+ * @property string $title
+ * @property string $slug
+ * @property string $description
+ * @property double $price_eur
+ * @property double $price_usd
+ * @property string $image_url
+ * @property int $created_at
+ * @property int $updated_at
+ * @property int $deleted_at
+ */
 class Product extends Model
 {
     use SoftDeletes;
@@ -42,7 +57,8 @@ class Product extends Model
      *
      * @return BelongsTo
      */
-    public function category(){
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 
@@ -54,23 +70,16 @@ class Product extends Model
     protected static function booted()
     {
         static::created(function () {
-            Product::updateCache();
+            CacheRepository::updateProductsCache();
         });
         static::updated(function () {
-            Product::updateCache();
+            CacheRepository::updateProductsCache();
         });
         static::deleted(function () {
-            Product::updateCache();
+            CacheRepository::updateProductsCache();
         });
         static::saved(function () {
-            Product::updateCache();
+            CacheRepository::updateProductsCache();
         });
-    }
-
-    public static function updateCache() {
-        $key = env('PRODCUTS_CACHE_KEY', 'products_cache_key');
-        Cache::forget($key);
-        Cache::forget($key . '_data');
-        Cache::add($key, md5($key . time()));
     }
 }

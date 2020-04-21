@@ -14,26 +14,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::resource('/categories', 'CategoryController')->only([
     'index'
 ]);
+
 Route::resource('/params', 'ParamController')->only([
     'index'
 ]);
+
 Route::resource('/products', 'ProductController')->only([
     'index'
 ]);
+
 Route::resource('/orders', 'OrderController')->only([
     'create'
 ]);
 
-
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('login', 'AuthController@login');
-Route::post('register', 'AuthController@register');
+
+Route::resource(
+    'auth',
+    'AuthController', [
+        'only' => [
+            'login',
+            'register'
+        ],
+    ]
+);
+
 Route::middleware('auth:api')->group(function () {
     Route::resource('/orders', 'OrderController')->only([
         'index'
