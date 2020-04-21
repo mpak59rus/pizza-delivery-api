@@ -22,8 +22,12 @@ Route::resource('/params', 'ParamController')->only([
     'index'
 ]);
 Route::resource('/products', 'ProductController')->only([
-    'index', 'show'
+    'index'
 ]);
+Route::resource('/orders', 'OrderController')->only([
+    'create'
+]);
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -31,6 +35,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('login', 'AuthController@login');
 Route::post('register', 'AuthController@register');
 Route::middleware('auth:api')->group(function () {
-
+    Route::resource('/orders', 'OrderController')->only([
+        'index'
+    ]);
     Route::get('/logout', 'AuthController@logout')->name('logout');
 });

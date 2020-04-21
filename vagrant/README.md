@@ -17,7 +17,7 @@ vagrant up
 ```
 
 ## Using 
-Database Mysql 192.168.83.137, логин/пароль pizza/pizza
+Database Mysql 192.168.73.27, login/password pizza/pizza
 
 After load Vargant API is on address
 - http://api.pizza.local 
