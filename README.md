@@ -1,3 +1,11 @@
+##Links
+
+Application - 
+API - http://api.pizza.local/
+All documentation on API methods - http://api.pizza.local/api-documentation
+Fronted (ReactJS) repository - 
+
+
 ##Install
 
 Create empty Mysql database. Set connection to this database in  .env file

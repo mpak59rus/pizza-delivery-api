@@ -1,0 +1,283 @@
+{
+	"info": {
+		"_postman_id": "78607b22-8ac3-4a39-ad74-9a32e2a49a35",
+		"name": "pizza-delivery-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"alfredo\",\n\t\"email\": \"alfredo6@modulr.io\",\n\t\"password\": \"123456\",\n\t\"password_confirmation\": \"123456\"\n}"
+						},
+						"url": {
+							"raw": "http://api.pizza.local/api/register",
+							"protocol": "http",
+							"host": [
+								"api",
+								"pizza",
+								"local"
+							],
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"alfredo6@modulr.io\",\n\t\"password\": \"123456\",\n\t\"remember_me\": false\n}"
+						},
+						"url": {
+							"raw": "http://api.pizza.local/api/login",
+							"protocol": "http",
+							"host": [
+								"api",
+								"pizza",
+								"local"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOWFkZDNhYTRmYjJhNWQzOGZiNzBmZDdmYzU4MWY3MWUyOTNiYjVlNDY5MTYwZjJlMzk2NGRhZTJjM2I1ODg4YzJlMGQ4NDI0MTZjNWU3MGIiLCJpYXQiOjE1ODc0NjkwOTgsIm5iZiI6MTU4NzQ2OTA5OCwiZXhwIjoxNjE5MDA1MDk4LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.zLH2Qpwd48mU7T-mU1eXgUM1i_7mmP1Yf7pOuQQbgAN9Upk-qmqgvfQU-WwjumqEmz3dCsC8YLpw2rE034KxzTqN6XTFvAkqO_pEEgsiaErsZFBXhCNnzmsmX500WFbQLBEOSFEVCp81ta2AqrTdztdSaiTAcVDHhFaORIGiIFLqYph9s-WELmfuHsInmwpnctlxgC2Ok8LqtmBHySnl5cPCh5pG7VXdfXWjurmRI8Ykty91HDtD2bJVSV-6McrL9cNhvBYqQNKg5yDtZF9NlyXL_0VIK_27W7pzBBeh9pQ1q-M_vrYfzZPZx3TM9Zdnq4yiH5ZWJofIgjTraoRvuMGMiwCm1mhBZGFCa6G8B3OBDU2JNxCTTBvvCt6UByNwtNMMha0LPMt8HflByUJyyuvttMm_X5WSlZHfeV3qQtLaGF8hRriAbZaHfkEUK3krMY4cRGU9QM5-uus0e09QSCZah0PHmTWmiRQ0j4jJL8uGeCNuC-PXS4Vr6ELdRlaipURdq1bxSwydFZYyauRQ6u_Lu8YJ_6IZBvLmmzq19VNCEGIxneq4oCLAxIOGEgJXZ-4o5bJl9tmz6GIghsyITU4nmD9NQeC3XOYkx8QqbgNi5_qvqefW443Pk3pbj3Np5lS-KquP6nMxhR8Tvqzem8vdFe2DPzPiSv40K-xYfqA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOWFkZDNhYTRmYjJhNWQzOGZiNzBmZDdmYzU4MWY3MWUyOTNiYjVlNDY5MTYwZjJlMzk2NGRhZTJjM2I1ODg4YzJlMGQ4NDI0MTZjNWU3MGIiLCJpYXQiOjE1ODc0NjkwOTgsIm5iZiI6MTU4NzQ2OTA5OCwiZXhwIjoxNjE5MDA1MDk4LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.zLH2Qpwd48mU7T-mU1eXgUM1i_7mmP1Yf7pOuQQbgAN9Upk-qmqgvfQU-WwjumqEmz3dCsC8YLpw2rE034KxzTqN6XTFvAkqO_pEEgsiaErsZFBXhCNnzmsmX500WFbQLBEOSFEVCp81ta2AqrTdztdSaiTAcVDHhFaORIGiIFLqYph9s-WELmfuHsInmwpnctlxgC2Ok8LqtmBHySnl5cPCh5pG7VXdfXWjurmRI8Ykty91HDtD2bJVSV-6McrL9cNhvBYqQNKg5yDtZF9NlyXL_0VIK_27W7pzBBeh9pQ1q-M_vrYfzZPZx3TM9Zdnq4yiH5ZWJofIgjTraoRvuMGMiwCm1mhBZGFCa6G8B3OBDU2JNxCTTBvvCt6UByNwtNMMha0LPMt8HflByUJyyuvttMm_X5WSlZHfeV3qQtLaGF8hRriAbZaHfkEUK3krMY4cRGU9QM5-uus0e09QSCZah0PHmTWmiRQ0j4jJL8uGeCNuC-PXS4Vr6ELdRlaipURdq1bxSwydFZYyauRQ6u_Lu8YJ_6IZBvLmmzq19VNCEGIxneq4oCLAxIOGEgJXZ-4o5bJl9tmz6GIghsyITU4nmD9NQeC3XOYkx8QqbgNi5_qvqefW443Pk3pbj3Np5lS-KquP6nMxhR8Tvqzem8vdFe2DPzPiSv40K-xYfqA"
+							}
+						],
+						"url": {
+							"raw": "http://api.pizza.local/api/logout",
+							"protocol": "http",
+							"host": [
+								"api",
+								"pizza",
+								"local"
+							],
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "products",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImI3MWVkZTQwYjc1MGJjMTg0OWQxZGI4MjA1NzNhYjAxNmMxMzUxODBhODJhMTJlNDk3MTczMjhjZDk4Mzk3NWJlZmYwOWFiNTU5MzEzMzE3In0.eyJhdWQiOiIxIiwianRpIjoiYjcxZWRlNDBiNzUwYmMxODQ5ZDFkYjgyMDU3M2FiMDE2YzEzNTE4MGE4MmExMmU0OTcxNzMyOGNkOTgzOTc1YmVmZjA5YWI1NTkzMTMzMTciLCJpYXQiOjE1MjUzNjUxNDQsIm5iZiI6MTUyNTM2NTE0NCwiZXhwIjoxNTU2OTAxMTQ0LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.T9eBMmxqIWZ2OvRHX9BpPJd0CHP8EvL2ftF9r8Q_n1KyxMGCmU67PQscZLGAsqlqFKiEDa_WhpiiOa8hQddep9sf4ZwrVTd1rFdwLpGSKhrtGnwZYCMEraeGTHweKDYopedwk3hOGffCD49RqkXLXWIhq_Iwgr-cvrvasj_cHSUdKq1FwtNjCzMX8xLrvfhcPFnPdTtresDxKD0e51tNc9a_iRAkIRq8TW_7jfofWCHdMwMPmIY-OTvnViq-cEik5Yk6zjA8w76CWNkgeVoxLxp0a22vEGh_0vZFEFcVvJmtyGNsKo8bjdheVHzbkhEKiGsqbWlafScB43rhNsBbiNI8EvX6Rk7KQScWChXeufTRzmRdlCOTShsG86Qbgv2u_nML9hUmfLDv4lR-TK4_c643WWI3kHBkQN4TNum8Lg62ofNRHU-QjCEnALVY0NI4eeZ2JQ19taId7AjZczW89fJmvsg5GLQ99BF4w2BYeqC1_tpKLuMSvwzLKqEnm24pkJ_KMmqweZyA431wZdvw3UR-e4K5-vSSMAXKVDxRR5hQf7a2UXAb4Oza94rcEb-2-fFr9UHFyOG_dRCPbWMABEEJQyfJwe1B8jYYZYmeNnyUNOeGHE26VijDw97uQbdxTXOaxJfuBdOY5JsVgzeJ3kPzZRKiklMaano4dAE8mi8"
+					}
+				],
+				"url": {
+					"raw": "http://api.pizza.local/api/products",
+					"protocol": "http",
+					"host": [
+						"api",
+						"pizza",
+						"local"
+					],
+					"path": [
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "orders",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOWFkZDNhYTRmYjJhNWQzOGZiNzBmZDdmYzU4MWY3MWUyOTNiYjVlNDY5MTYwZjJlMzk2NGRhZTJjM2I1ODg4YzJlMGQ4NDI0MTZjNWU3MGIiLCJpYXQiOjE1ODc0NjkwOTgsIm5iZiI6MTU4NzQ2OTA5OCwiZXhwIjoxNjE5MDA1MDk4LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.zLH2Qpwd48mU7T-mU1eXgUM1i_7mmP1Yf7pOuQQbgAN9Upk-qmqgvfQU-WwjumqEmz3dCsC8YLpw2rE034KxzTqN6XTFvAkqO_pEEgsiaErsZFBXhCNnzmsmX500WFbQLBEOSFEVCp81ta2AqrTdztdSaiTAcVDHhFaORIGiIFLqYph9s-WELmfuHsInmwpnctlxgC2Ok8LqtmBHySnl5cPCh5pG7VXdfXWjurmRI8Ykty91HDtD2bJVSV-6McrL9cNhvBYqQNKg5yDtZF9NlyXL_0VIK_27W7pzBBeh9pQ1q-M_vrYfzZPZx3TM9Zdnq4yiH5ZWJofIgjTraoRvuMGMiwCm1mhBZGFCa6G8B3OBDU2JNxCTTBvvCt6UByNwtNMMha0LPMt8HflByUJyyuvttMm_X5WSlZHfeV3qQtLaGF8hRriAbZaHfkEUK3krMY4cRGU9QM5-uus0e09QSCZah0PHmTWmiRQ0j4jJL8uGeCNuC-PXS4Vr6ELdRlaipURdq1bxSwydFZYyauRQ6u_Lu8YJ_6IZBvLmmzq19VNCEGIxneq4oCLAxIOGEgJXZ-4o5bJl9tmz6GIghsyITU4nmD9NQeC3XOYkx8QqbgNi5_qvqefW443Pk3pbj3Np5lS-KquP6nMxhR8Tvqzem8vdFe2DPzPiSv40K-xYfqA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOWFkZDNhYTRmYjJhNWQzOGZiNzBmZDdmYzU4MWY3MWUyOTNiYjVlNDY5MTYwZjJlMzk2NGRhZTJjM2I1ODg4YzJlMGQ4NDI0MTZjNWU3MGIiLCJpYXQiOjE1ODc0NjkwOTgsIm5iZiI6MTU4NzQ2OTA5OCwiZXhwIjoxNjE5MDA1MDk4LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.zLH2Qpwd48mU7T-mU1eXgUM1i_7mmP1Yf7pOuQQbgAN9Upk-qmqgvfQU-WwjumqEmz3dCsC8YLpw2rE034KxzTqN6XTFvAkqO_pEEgsiaErsZFBXhCNnzmsmX500WFbQLBEOSFEVCp81ta2AqrTdztdSaiTAcVDHhFaORIGiIFLqYph9s-WELmfuHsInmwpnctlxgC2Ok8LqtmBHySnl5cPCh5pG7VXdfXWjurmRI8Ykty91HDtD2bJVSV-6McrL9cNhvBYqQNKg5yDtZF9NlyXL_0VIK_27W7pzBBeh9pQ1q-M_vrYfzZPZx3TM9Zdnq4yiH5ZWJofIgjTraoRvuMGMiwCm1mhBZGFCa6G8B3OBDU2JNxCTTBvvCt6UByNwtNMMha0LPMt8HflByUJyyuvttMm_X5WSlZHfeV3qQtLaGF8hRriAbZaHfkEUK3krMY4cRGU9QM5-uus0e09QSCZah0PHmTWmiRQ0j4jJL8uGeCNuC-PXS4Vr6ELdRlaipURdq1bxSwydFZYyauRQ6u_Lu8YJ_6IZBvLmmzq19VNCEGIxneq4oCLAxIOGEgJXZ-4o5bJl9tmz6GIghsyITU4nmD9NQeC3XOYkx8QqbgNi5_qvqefW443Pk3pbj3Np5lS-KquP6nMxhR8Tvqzem8vdFe2DPzPiSv40K-xYfqA"
+					}
+				],
+				"url": {
+					"raw": "http://api.pizza.local/api/orders",
+					"protocol": "http",
+					"host": [
+						"api",
+						"pizza",
+						"local"
+					],
+					"path": [
+						"api",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "orders/create",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOWFkZDNhYTRmYjJhNWQzOGZiNzBmZDdmYzU4MWY3MWUyOTNiYjVlNDY5MTYwZjJlMzk2NGRhZTJjM2I1ODg4YzJlMGQ4NDI0MTZjNWU3MGIiLCJpYXQiOjE1ODc0NjkwOTgsIm5iZiI6MTU4NzQ2OTA5OCwiZXhwIjoxNjE5MDA1MDk4LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.zLH2Qpwd48mU7T-mU1eXgUM1i_7mmP1Yf7pOuQQbgAN9Upk-qmqgvfQU-WwjumqEmz3dCsC8YLpw2rE034KxzTqN6XTFvAkqO_pEEgsiaErsZFBXhCNnzmsmX500WFbQLBEOSFEVCp81ta2AqrTdztdSaiTAcVDHhFaORIGiIFLqYph9s-WELmfuHsInmwpnctlxgC2Ok8LqtmBHySnl5cPCh5pG7VXdfXWjurmRI8Ykty91HDtD2bJVSV-6McrL9cNhvBYqQNKg5yDtZF9NlyXL_0VIK_27W7pzBBeh9pQ1q-M_vrYfzZPZx3TM9Zdnq4yiH5ZWJofIgjTraoRvuMGMiwCm1mhBZGFCa6G8B3OBDU2JNxCTTBvvCt6UByNwtNMMha0LPMt8HflByUJyyuvttMm_X5WSlZHfeV3qQtLaGF8hRriAbZaHfkEUK3krMY4cRGU9QM5-uus0e09QSCZah0PHmTWmiRQ0j4jJL8uGeCNuC-PXS4Vr6ELdRlaipURdq1bxSwydFZYyauRQ6u_Lu8YJ_6IZBvLmmzq19VNCEGIxneq4oCLAxIOGEgJXZ-4o5bJl9tmz6GIghsyITU4nmD9NQeC3XOYkx8QqbgNi5_qvqefW443Pk3pbj3Np5lS-KquP6nMxhR8Tvqzem8vdFe2DPzPiSv40K-xYfqA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiOWFkZDNhYTRmYjJhNWQzOGZiNzBmZDdmYzU4MWY3MWUyOTNiYjVlNDY5MTYwZjJlMzk2NGRhZTJjM2I1ODg4YzJlMGQ4NDI0MTZjNWU3MGIiLCJpYXQiOjE1ODc0NjkwOTgsIm5iZiI6MTU4NzQ2OTA5OCwiZXhwIjoxNjE5MDA1MDk4LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.zLH2Qpwd48mU7T-mU1eXgUM1i_7mmP1Yf7pOuQQbgAN9Upk-qmqgvfQU-WwjumqEmz3dCsC8YLpw2rE034KxzTqN6XTFvAkqO_pEEgsiaErsZFBXhCNnzmsmX500WFbQLBEOSFEVCp81ta2AqrTdztdSaiTAcVDHhFaORIGiIFLqYph9s-WELmfuHsInmwpnctlxgC2Ok8LqtmBHySnl5cPCh5pG7VXdfXWjurmRI8Ykty91HDtD2bJVSV-6McrL9cNhvBYqQNKg5yDtZF9NlyXL_0VIK_27W7pzBBeh9pQ1q-M_vrYfzZPZx3TM9Zdnq4yiH5ZWJofIgjTraoRvuMGMiwCm1mhBZGFCa6G8B3OBDU2JNxCTTBvvCt6UByNwtNMMha0LPMt8HflByUJyyuvttMm_X5WSlZHfeV3qQtLaGF8hRriAbZaHfkEUK3krMY4cRGU9QM5-uus0e09QSCZah0PHmTWmiRQ0j4jJL8uGeCNuC-PXS4Vr6ELdRlaipURdq1bxSwydFZYyauRQ6u_Lu8YJ_6IZBvLmmzq19VNCEGIxneq4oCLAxIOGEgJXZ-4o5bJl9tmz6GIghsyITU4nmD9NQeC3XOYkx8QqbgNi5_qvqefW443Pk3pbj3Np5lS-KquP6nMxhR8Tvqzem8vdFe2DPzPiSv40K-xYfqA"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"alfredo6@modulr.io\",\n    \"name\": \"alfredo6\",\n    \"address\": \"alfredo address 1\",\n    \"comment\": \"1jkfsd hj\",\n    \"currency\": \"USD\",\n    \"paid_delivery\": 0,\n    \"items\": [\n    \t{\n    \t\t\"product_id\": 3,\n    \t\t\"quantity\": 4\n    \t},\n    \t{\n    \t\t\"product_id\": 2,\n    \t\t\"quantity\": 2\n    \t}\n\t]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://api.pizza.local/api/orders/create",
+					"protocol": "http",
+					"host": [
+						"api",
+						"pizza",
+						"local"
+					],
+					"path": [
+						"api",
+						"orders",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "categories",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImI3MWVkZTQwYjc1MGJjMTg0OWQxZGI4MjA1NzNhYjAxNmMxMzUxODBhODJhMTJlNDk3MTczMjhjZDk4Mzk3NWJlZmYwOWFiNTU5MzEzMzE3In0.eyJhdWQiOiIxIiwianRpIjoiYjcxZWRlNDBiNzUwYmMxODQ5ZDFkYjgyMDU3M2FiMDE2YzEzNTE4MGE4MmExMmU0OTcxNzMyOGNkOTgzOTc1YmVmZjA5YWI1NTkzMTMzMTciLCJpYXQiOjE1MjUzNjUxNDQsIm5iZiI6MTUyNTM2NTE0NCwiZXhwIjoxNTU2OTAxMTQ0LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.T9eBMmxqIWZ2OvRHX9BpPJd0CHP8EvL2ftF9r8Q_n1KyxMGCmU67PQscZLGAsqlqFKiEDa_WhpiiOa8hQddep9sf4ZwrVTd1rFdwLpGSKhrtGnwZYCMEraeGTHweKDYopedwk3hOGffCD49RqkXLXWIhq_Iwgr-cvrvasj_cHSUdKq1FwtNjCzMX8xLrvfhcPFnPdTtresDxKD0e51tNc9a_iRAkIRq8TW_7jfofWCHdMwMPmIY-OTvnViq-cEik5Yk6zjA8w76CWNkgeVoxLxp0a22vEGh_0vZFEFcVvJmtyGNsKo8bjdheVHzbkhEKiGsqbWlafScB43rhNsBbiNI8EvX6Rk7KQScWChXeufTRzmRdlCOTShsG86Qbgv2u_nML9hUmfLDv4lR-TK4_c643WWI3kHBkQN4TNum8Lg62ofNRHU-QjCEnALVY0NI4eeZ2JQ19taId7AjZczW89fJmvsg5GLQ99BF4w2BYeqC1_tpKLuMSvwzLKqEnm24pkJ_KMmqweZyA431wZdvw3UR-e4K5-vSSMAXKVDxRR5hQf7a2UXAb4Oza94rcEb-2-fFr9UHFyOG_dRCPbWMABEEJQyfJwe1B8jYYZYmeNnyUNOeGHE26VijDw97uQbdxTXOaxJfuBdOY5JsVgzeJ3kPzZRKiklMaano4dAE8mi8"
+					}
+				],
+				"url": {
+					"raw": "http://api.pizza.local/api/categories",
+					"protocol": "http",
+					"host": [
+						"api",
+						"pizza",
+						"local"
+					],
+					"path": [
+						"api",
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "params",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImI3MWVkZTQwYjc1MGJjMTg0OWQxZGI4MjA1NzNhYjAxNmMxMzUxODBhODJhMTJlNDk3MTczMjhjZDk4Mzk3NWJlZmYwOWFiNTU5MzEzMzE3In0.eyJhdWQiOiIxIiwianRpIjoiYjcxZWRlNDBiNzUwYmMxODQ5ZDFkYjgyMDU3M2FiMDE2YzEzNTE4MGE4MmExMmU0OTcxNzMyOGNkOTgzOTc1YmVmZjA5YWI1NTkzMTMzMTciLCJpYXQiOjE1MjUzNjUxNDQsIm5iZiI6MTUyNTM2NTE0NCwiZXhwIjoxNTU2OTAxMTQ0LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.T9eBMmxqIWZ2OvRHX9BpPJd0CHP8EvL2ftF9r8Q_n1KyxMGCmU67PQscZLGAsqlqFKiEDa_WhpiiOa8hQddep9sf4ZwrVTd1rFdwLpGSKhrtGnwZYCMEraeGTHweKDYopedwk3hOGffCD49RqkXLXWIhq_Iwgr-cvrvasj_cHSUdKq1FwtNjCzMX8xLrvfhcPFnPdTtresDxKD0e51tNc9a_iRAkIRq8TW_7jfofWCHdMwMPmIY-OTvnViq-cEik5Yk6zjA8w76CWNkgeVoxLxp0a22vEGh_0vZFEFcVvJmtyGNsKo8bjdheVHzbkhEKiGsqbWlafScB43rhNsBbiNI8EvX6Rk7KQScWChXeufTRzmRdlCOTShsG86Qbgv2u_nML9hUmfLDv4lR-TK4_c643WWI3kHBkQN4TNum8Lg62ofNRHU-QjCEnALVY0NI4eeZ2JQ19taId7AjZczW89fJmvsg5GLQ99BF4w2BYeqC1_tpKLuMSvwzLKqEnm24pkJ_KMmqweZyA431wZdvw3UR-e4K5-vSSMAXKVDxRR5hQf7a2UXAb4Oza94rcEb-2-fFr9UHFyOG_dRCPbWMABEEJQyfJwe1B8jYYZYmeNnyUNOeGHE26VijDw97uQbdxTXOaxJfuBdOY5JsVgzeJ3kPzZRKiklMaano4dAE8mi8"
+					}
+				],
+				"url": {
+					"raw": "http://api.pizza.local/api/params",
+					"protocol": "http",
+					"host": [
+						"api",
+						"pizza",
+						"local"
+					],
+					"path": [
+						"api",
+						"params"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

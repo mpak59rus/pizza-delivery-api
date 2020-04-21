@@ -35,7 +35,7 @@ Access tokens are required to access order history endpoint of this API.
 + Response 200 (application/json)
     + Attributes
         + token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9....` (string) - JSON Web Token.
-+ Response 422 (plainntext)
++ Response 422 (application/json)
     + Attributes
         + errors: `Wrong password` (string) - Error text
 
@@ -59,6 +59,7 @@ Creates a new user account.
 
 + Request (application/json)
     + Attributes
+        + name: `john` (string, required) - Name.
         + email: `john.doe@mail.com` (string, required) - E-mail address.
         + password: `QXR0mi38a2` (string, required) - User password.
 
@@ -68,7 +69,8 @@ Creates a new user account.
 
 + Response 422 (application/json)
     + Attributes
-        + errors: `The email has already been taken.` (string) - Error text.
+        + message: `The given data was invalid.` (string) - Error message.
+        + errors: (array) Array of errors.
 
 ## Logout [/api/logout]
 
@@ -130,10 +132,67 @@ Return a array with all Products in menu.
 |-------------------------|-----|
 | Requires authentication | No  |
 
+**Error codes**
+
+|       |                          |
+|-------| ------------------------ |
+| `401` | Unauthenticated          |
+
 + Request (application/json)
 
 + Response 200 (application/json)
     + Attributes (array[Product])
+
+# Group Orders
+
+## Orders [/orders]
+
+### Get all orders for current user [GET]
+
+Return a array with all orders for current user.
+
+**Endpoint information**
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | Yes |
+
++ Request (application/json)
+
++ Response 200 (application/json)
+    + Attributes (array[Order])
+
++ Response 401 (application/json)
+    + Attributes
+        + errors: `Unauthenticated` (string) - Error text.
+
+## New order [/orders/create]
+
+### Create order [POST]
+
+Create new order
+
+**Endpoint information**
+
+|                         |     |
+|-------------------------|-----|
+| Requires authentication | No  |
+
+**Error codes**
+
+|       |                             |
+|-------| --------------------------- |
+| `422` | Data is incorrect           |
+
++ Request (application/json)
+    + Attributes (Order)
+
++ Response 200 (application/json)
+    + Attributes
+        + message: `Your order is accepted` (string) - Success message.
++ Response 422 (application/json)
+    + Attributes
+        + errors: `Data is incorrect` (string) - Error text
 
 # Data Structures
 
@@ -152,3 +211,15 @@ Return a array with all Products in menu.
 + title: `Mushrooms`  (string) - Title of Category
 + slug: `mushrooms-pizza`  (string) - Category alias/slug for SEO
 + description: `Mushrooms, hard cheese ...`  (string) - Category Description
+
+## Order (object)
++ email (string) - Customer email
++ name (string) - Customer address
++ address (string) - Customer name
++ currency (string) - Currency of order
++ paid_delivery (boolean) - Paid delivery?
++ items (array[OrderItem]) - Order Items
+
+## OrderItem (object)
++ product_id: 2  (number) - Product Id
++ quantity: 2  (number) - Amount of product
