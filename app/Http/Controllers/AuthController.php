@@ -3,21 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
-use App\User;
+use App\Repositories\UserRepository;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
     public function register (UserRequest $userRequest)
     {
-        if (!$userRequest->validated())
-        {
+        if (!$userRequest->validated()) {
             return response(['errors' => $userRequest->errors()->all()], 422);
         }
 
-        $user = User::create($userRequest->toArray());
+        $user = UserRepository::create($userRequest);
         $token = $user->createToken('Pizza test token')->accessToken;
 
         return response(['token' => $token], 200);
@@ -25,7 +23,7 @@ class AuthController extends Controller
 
     public function login (UserRequest $request)
     {
-        if ($user = User::where('email', $request->email)->first()) {
+        if ($user = UserRepository::findByEmail($request->email)) {
             if (Hash::check($request->password, $user->password)) {
                 $token = $user->createToken('Pizza test token')->accessToken;
 
@@ -52,6 +50,6 @@ class AuthController extends Controller
         $token = $request->user()->token();
         $token->revoke();
 
-        return response(['message' => 'You have been succesfully logged out!'], 200);
+        return response(['message' => 'You have been successfully logged out!'], 200);
     }
 }

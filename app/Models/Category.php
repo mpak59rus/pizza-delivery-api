@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use App\Http\Repositories\CacheRepository;
+use App\Services\CacheService;
 use Iatstuti\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Category
@@ -62,16 +62,16 @@ class Category extends Model
     protected static function booted()
     {
         static::created(function () {
-            CacheRepository::updateCategoriesCache();
+            CacheService::updateCategoriesCache();
         });
         static::updated(function () {
-            CacheRepository::updateCategoriesCache();
+            CacheService::updateCategoriesCache();
         });
         static::deleted(function () {
-            CacheRepository::updateCategoriesCache();
+            CacheService::updateCategoriesCache();
         });
         static::saved(function () {
-            CacheRepository::updateCategoriesCache();
+            CacheService::updateCategoriesCache();
         });
     }
 }

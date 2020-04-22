@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Repositories;
+namespace Repositories;
 
 use App\Http\Requests\OrderRequest;
-use App\Order;
-use App\OrderItem;
-use App\Product;
-use App\User;
+use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\Product;
+use App\Models\User;
 
 abstract class OrderRepository
 {
@@ -54,6 +54,7 @@ abstract class OrderRepository
         $order->save();
 
         $orderSum = 0;
+
         if ($order->paid_delivery) {
             if ($order->currency === Order::CURRENCY_USD) {
                 $orderSum += env('deliveryUSD');

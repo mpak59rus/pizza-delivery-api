@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\CacheService;
 use Illuminate\Support\Facades\Cache;
-use App\Category;
-use App\Product;
 
 class ParamController extends Controller
 {
@@ -13,15 +12,19 @@ class ParamController extends Controller
      *
      * @return array
      */
-    public function index() {
+    public function index()
+    {
         $categoriesCacheKey = env('CATEGORIES_CACHE_KEY', 'categories_cache_key');
         $productsCacheKey = env('PRODUCTS_CACHE_KEY', 'products_cache_key');
+
         if (!Cache::has($categoriesCacheKey)) {
-            Category::updateCache();
+            CacheService::updateCategoriesCache();
         }
+
         if (!Cache::has($productsCacheKey)) {
-            Product::updateCache();
+            CacheService::updateProductsCache();
         }
+
         $categoriesCache = Cache::get($categoriesCacheKey);
         $productsCache = Cache::get($productsCacheKey);
 

@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Repositories\OrderRepository;
-use App\Order;
-use App\OrderItem;
-use App\Product;
-use App\User;
+use App\Http\Requests\OrderRequest;
+use App\Models\User;
+use App\Repositories\OrderRepository;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Http\Requests\OrderRequest;
 
 class OrderController extends Controller
 {

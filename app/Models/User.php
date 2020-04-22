@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -15,6 +15,10 @@ use Laravel\Passport\HasApiTokens;
  * @property string $name
  * @property string $email
  * @property string $password
+ *
+ * @method static User create($data)
+ * @method static User where($field, $value)
+ * @method User|null first():
  */
 class User extends Authenticatable
 {

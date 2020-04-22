@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use App\Http\Repositories\CacheRepository;
+use App\Services\CacheService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -21,6 +21,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $created_at
  * @property int $updated_at
  * @property int $deleted_at
+ *
+ * @method static Product find($args)
+ * @method static Product findOrFail($args)
  */
 class Product extends Model
 {
@@ -70,16 +73,16 @@ class Product extends Model
     protected static function booted()
     {
         static::created(function () {
-            CacheRepository::updateProductsCache();
+            CacheService::updateProductsCache();
         });
         static::updated(function () {
-            CacheRepository::updateProductsCache();
+            CacheService::updateProductsCache();
         });
         static::deleted(function () {
-            CacheRepository::updateProductsCache();
+            CacheService::updateProductsCache();
         });
         static::saved(function () {
-            CacheRepository::updateProductsCache();
+            CacheService::updateProductsCache();
         });
     }
 }

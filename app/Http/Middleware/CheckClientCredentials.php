@@ -3,10 +3,10 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Laminas\Diactoros\StreamFactory;
 use Laminas\Diactoros\ResponseFactory;
-use Laminas\Diactoros\UploadedFileFactory;
 use Laminas\Diactoros\ServerRequestFactory;
+use Laminas\Diactoros\StreamFactory;
+use Laminas\Diactoros\UploadedFileFactory;
 use Laravel\Passport\Http\Middleware\CheckCredentials;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
@@ -23,7 +23,7 @@ class CheckClientCredentials extends CheckCredentials
         ))->createRequest($request);
 
         try {
-            $psr = $this->server->validateAuthenticatedRequest($psr);
+            $this->server->validateAuthenticatedRequest($psr);
         } catch (OAuthServerException $e) {
             return response()->json($e->getPayload(), $e->getHttpStatusCode());
         }
