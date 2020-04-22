@@ -17,6 +17,7 @@ class OrderRequest extends FormRequest
     }
 
     /**
+     *
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -30,6 +31,7 @@ class OrderRequest extends FormRequest
             'comment' => 'string',
             'currency' => 'required|string',
             'paid_delivery' => 'required|boolean',
+            'items' => 'required|array|min:1',
         ];
     }
 }

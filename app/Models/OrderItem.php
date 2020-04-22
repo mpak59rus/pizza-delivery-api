@@ -1,20 +1,23 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * Class OrderItem
+ *
+ * @package App
+ *
+ * @property int $id
+ * @property int $order_id
+ * @property int $product_id
+ * @property int $quantity
+ * @property int $sort
+ */
 class OrderItem extends Model
 {
-    const ORDER_ITEM_FIELDS = [
-        'id',
-        'order_id',
-        'product_id',
-        'quantity',
-        'sort'
-    ];
-
     protected $hidden = ['created_at', 'updated_at'];
 
     protected $fillable = [
@@ -29,7 +32,8 @@ class OrderItem extends Model
      *
      * @return BelongsTo
      */
-    public function order(){
+    public function order()
+    {
         return $this->belongsTo(Order::class);
     }
 
@@ -38,7 +42,8 @@ class OrderItem extends Model
      *
      * @return BelongsTo
      */
-    public function product(){
+    public function product()
+    {
         return $this->belongsTo(Product::class);
     }
 }

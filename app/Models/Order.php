@@ -1,15 +1,30 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * Class Order
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property string $email
+ * @property string $name
+ * @property string $address
+ * @property string $comment
+ * @property string $currency
+ * @property bool $paid_delivery
+ * @property int $created_at
+ * @property int $updated_at
+ * @property float $sum
+ *
+ */
 class Order extends Model
 {
     const CURRENCY_USD = 'USD';
-    const CURRENCY_EUR = 'EUR';
 
     const ORDER_FIELDS = [
         'id',
@@ -41,7 +56,8 @@ class Order extends Model
      *
      * @return BelongsTo
      */
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 

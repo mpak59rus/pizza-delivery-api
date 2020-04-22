@@ -1,12 +1,25 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 
+/**
+ * Class User
+ *
+ * @package App
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $email
+ * @property string $password
+ *
+ * @method static User create($data)
+ * @method static User where($field, $value)
+ * @method User|null first():
+ */
 class User extends Authenticatable
 {
     use Notifiable, HasApiTokens;
