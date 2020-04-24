@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('/categories', 'CategoryController')->only([
-    'index'
+    'index', 'show'
 ]);
 
 Route::resource('/params', 'ParamController')->only([

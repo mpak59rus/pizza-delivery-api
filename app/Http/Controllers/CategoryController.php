@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use App\Services\CacheService;
 
 class CategoryController extends Controller
@@ -20,6 +21,15 @@ class CategoryController extends Controller
                 ->filter(function (Category $category) {
                     return $category->products()->count() > 0 ? true : false;
                 })->sortBy('sort')->values();
+        });
+    }
+
+    public function show($id)
+    {
+        $dataCacheKey = env('PRODUCTS_CACHE_KEY', 'products_cache_key') . '_category_' . $id;
+
+        return CacheService::remember($dataCacheKey, 24 * 60 * 60, function () use ($id) {
+            return Category::findOrFail($id)->products()->get(Product::PRODUCT_FIELDS)->sortBy('sort');
         });
     }
 }
