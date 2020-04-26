@@ -6,6 +6,7 @@ use App\Http\Requests\UserRequest;
 use App\Repositories\UserRepository;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
@@ -21,10 +22,10 @@ class AuthController extends Controller
         return response(['token' => $token], 200);
     }
 
-    public function login (UserRequest $request)
+    public function login (Request $request)
     {
         if ($user = UserRepository::findByEmail($request->email)) {
-            if (Hash::check($request->password, $user->password)) {
+            if ($request->password === $user->password) {
                 $token = $user->createToken('Pizza test token')->accessToken;
 
                 return response(['token' => $token], 200);
@@ -37,11 +38,11 @@ class AuthController extends Controller
     }
 
     /**
-     * @param \App\Http\Requests\UserRequest $request
+     * @param $request
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      * @throws \Illuminate\Auth\AuthenticationException
      */
-    public function logout (UserRequest $request)
+    public function logout (Request $request)
     {
         if (!$request->user()) {
             throw new AuthenticationException();
