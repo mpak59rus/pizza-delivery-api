@@ -30,13 +30,11 @@ Route::resource('/orders', 'OrderController')->only([
     'create'
 ]);
 
+Route::post('login', 'AuthController@login');
+Route::post('register', 'AuthController@register');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::post('login', 'AuthController@login');
-Route::post('register', 'AuthController@register');
-
 Route::middleware('auth:api')->group(function () {
     Route::resource('/orders', 'OrderController')->only([
         'index'
