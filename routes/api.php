@@ -34,15 +34,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource(
-    'auth',
-    'AuthController', [
-        'only' => [
-            'login',
-            'register'
-        ],
-    ]
-);
+Route::post('login', 'AuthController@login');
+Route::post('register', 'AuthController@register');
 
 Route::middleware('auth:api')->group(function () {
     Route::resource('/orders', 'OrderController')->only([
