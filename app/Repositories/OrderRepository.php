@@ -13,9 +13,9 @@ abstract class OrderRepository
     public static function getUserOrders(string $userId): array
     {
         $result = [];
-        $orders = Order::all(Order::ORDER_FIELDS)
-            ->where('user_id', '=', $userId)
-            ->sortBy('created_at');
+        $orders = Order::where('user_id', $userId)
+            ->orderBy('created_at')
+            ->get(Order::ORDER_FIELDS);
 
         foreach ($orders as $order){
             $result[$order->id] = [
@@ -29,8 +29,11 @@ abstract class OrderRepository
                 'items' => []
             ];
 
-            foreach ($order->items() as $item){
+            $items = OrderItem::where('order_id',$order->id)->get();
+
+            foreach ($items as $item){
                 $result[$order->id]['items'][] = [
+                    'product_title' => $item->product->title,
                     'product_id' => $item->product_id,
                     'quantity' => $item->quantity
                 ];

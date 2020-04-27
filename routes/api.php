@@ -26,10 +26,8 @@ Route::resource('/products', 'ProductController')->only([
     'index'
 ]);
 
-Route::resource('/orders', 'OrderController')->only([
-    'create'
-]);
-
+Route::post('/orders/create', 'OrderController@create');
+Route::post('login', 'AuthController@login');
 Route::post('login', 'AuthController@login');
 Route::post('register', 'AuthController@register');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
