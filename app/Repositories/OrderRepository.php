@@ -29,6 +29,7 @@ abstract class OrderRepository
                 ];
             }
             $result[] = [
+                'id' => $order->id,
                 'email' => $order->email,
                 'name' => $order->name,
                 'address' => $order->address,
