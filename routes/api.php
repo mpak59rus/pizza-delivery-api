@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('/categories', 'CategoryController')->only([
-    'index'
+    'index', 'show'
 ]);
 
 Route::resource('/params', 'ParamController')->only([
@@ -26,24 +26,13 @@ Route::resource('/products', 'ProductController')->only([
     'index'
 ]);
 
-Route::resource('/orders', 'OrderController')->only([
-    'create'
-]);
-
+Route::post('/orders/create', 'OrderController@create');
+Route::post('login', 'AuthController@login');
+Route::post('login', 'AuthController@login');
+Route::post('register', 'AuthController@register');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-Route::resource(
-    'auth',
-    'AuthController', [
-        'only' => [
-            'login',
-            'register'
-        ],
-    ]
-);
-
 Route::middleware('auth:api')->group(function () {
     Route::resource('/orders', 'OrderController')->only([
         'index'

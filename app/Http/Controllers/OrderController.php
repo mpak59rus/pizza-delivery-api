@@ -24,7 +24,7 @@ class OrderController extends Controller
             throw new AuthenticationException();
         }
 
-        $result = OrderRepository::getUserOrders($request->user());
+        $result = OrderRepository::getUserOrders($request->user()->id);
 
         return new Response($result);
     }

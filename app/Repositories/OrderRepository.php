@@ -1,6 +1,6 @@
 <?php
 
-namespace Repositories;
+namespace App\Repositories;
 
 use App\Http\Requests\OrderRequest;
 use App\Models\Order;
@@ -13,12 +13,23 @@ abstract class OrderRepository
     public static function getUserOrders(string $userId): array
     {
         $result = [];
-        $orders = Order::all(Order::ORDER_FIELDS)
-            ->where('user_id', '=', $userId)
-            ->sortBy('created_at');
+        $orders = Order::where('user_id', $userId)
+            ->orderBy('created_at')
+            ->get(Order::ORDER_FIELDS);
 
         foreach ($orders as $order){
-            $result[$order->id] = [
+            $orderItems = [];
+
+            $items = OrderItem::where('order_id',$order->id)->get();
+            foreach ($items as $item){
+                $orderItems[] = [
+                    'product_title' => $item->product->title,
+                    'product_id' => $item->product_id,
+                    'quantity' => $item->quantity
+                ];
+            }
+            $result[] = [
+                'id' => $order->id,
                 'email' => $order->email,
                 'name' => $order->name,
                 'address' => $order->address,
@@ -26,15 +37,8 @@ abstract class OrderRepository
                 'sum' => $order->sum,
                 'currency' => $order->currency,
                 'paid_delivery' => $order->paid_delivery,
-                'items' => []
+                'items' => $orderItems
             ];
-
-            foreach ($order->items() as $item){
-                $result[$order->id]['items'][] = [
-                    'product_id' => $item->product_id,
-                    'quantity' => $item->quantity
-                ];
-            }
         }
 
         return $result;
