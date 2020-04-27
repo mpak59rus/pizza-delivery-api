@@ -9,6 +9,7 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+.rnd
 
 # Env
 /.env
@@ -18,6 +19,9 @@ yarn-error.log
 
 # IDE
 .idea
+.idea/php.xml
+.idea/pizza-delivery-api.iml
+.idea/workspace.xml
 nbproject
 .buildpath
 .project
@@ -28,3 +32,6 @@ Thumbs.db
 
 # Mac DS_Store Files
 .DS_Store
+
+# vagrant runtime
+/.vagrant

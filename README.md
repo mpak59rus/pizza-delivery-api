@@ -1,3 +1,14 @@
+##Links
+
+Application - http://pizza.beerpirate.ru
+
+API - http://api.pizza.local/
+
+All documentation on API methods - http://api.pizza.local/api-documentation
+
+Frontend (ReactJS) repository - https://github.com/mpak59rus/pizza-delivery-front
+
+
 ##Install
 
 Create empty Mysql database. Set connection to this database in  .env file
@@ -9,10 +20,22 @@ Create empty Mysql database. Set connection to this database in  .env file
 - **DB_PASSWORD** - database access password
 - **DB_CONNECTION** - set 'mysql' or empty
 
-Install dependents
+Install dependents:
 ``
 composer install
 ``
+
+I'm using test content/images from DodoPizza UK. Hi, Fedor Ovchinnikov! :)
+To create DB structure & fill that DB with test data use migrations and seed:
+``
+php artisan migrate
+php artisan db:seed
+``
+I add Vagrant in project 4 Drafter & BluePrintAPI. I'm using Windows Home on personal PC and Docker isn't work on it.
+
+Documentation create by BluePrintAPI - https://github.com/M165437/laravel-blueprint-docs
+Documentation URL - /api-documentation
+
 
 
 
