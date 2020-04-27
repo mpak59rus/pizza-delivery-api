@@ -1,15 +1,15 @@
-##Links
+##Links##
 
 Application - http://pizza.beerpirate.ru
 
-API - http://api.pizza.local/
+API - http://api.beerpirate.ru/
 
-All documentation on API methods - http://api.pizza.local/api-documentation
+All documentation on API methods - http://api.beerpirate.ru/api-documentation
 
 Frontend (ReactJS) repository - https://github.com/mpak59rus/pizza-delivery-front
 
 
-##Install
+##Install##
 
 Create empty Mysql database. Set connection to this database in  .env file
 - **APP_KEY** - any string;
