@@ -18,7 +18,17 @@ abstract class OrderRepository
             ->get(Order::ORDER_FIELDS);
 
         foreach ($orders as $order){
-            $result[$order->id] = [
+            $orderItems = [];
+
+            $items = OrderItem::where('order_id',$order->id)->get();
+            foreach ($items as $item){
+                $orderItems[] = [
+                    'product_title' => $item->product->title,
+                    'product_id' => $item->product_id,
+                    'quantity' => $item->quantity
+                ];
+            }
+            $result[] = [
                 'email' => $order->email,
                 'name' => $order->name,
                 'address' => $order->address,
@@ -26,18 +36,8 @@ abstract class OrderRepository
                 'sum' => $order->sum,
                 'currency' => $order->currency,
                 'paid_delivery' => $order->paid_delivery,
-                'items' => []
+                'items' => $orderItems
             ];
-
-            $items = OrderItem::where('order_id',$order->id)->get();
-
-            foreach ($items as $item){
-                $result[$order->id]['items'][] = [
-                    'product_title' => $item->product->title,
-                    'product_id' => $item->product_id,
-                    'quantity' => $item->quantity
-                ];
-            }
         }
 
         return $result;
